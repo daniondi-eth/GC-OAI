@@ -1,3 +1,19 @@
+/* Aplicando un gradiente de color al título */
+h1 {
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 0 #ffbf69, 4px 4px 0 #ff8a00;
+
+  /* Agregando una fuente personalizada */
+  font-family: 'Montserrat', sans-serif;
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+  margin: 50px 0 30px;
+}
+
+
 /* Estilos generales */
 body {
   font-family: Arial, sans-serif;
