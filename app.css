@@ -1,17 +1,43 @@
-/* Aplicando un gradiente de color al título */
+/* Aplicando un diseño minimalista al título */
 h1 {
-  background: linear-gradient(90deg, #ff8a00, #e52e71);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 2px 2px 0 #ffbf69, 4px 4px 0 #ff8a00;
-
-  /* Agregando una fuente personalizada */
   font-family: 'Montserrat', sans-serif;
-  font-size: 48px;
+  font-size: 64px;
   font-weight: bold;
   text-align: center;
   margin: 50px 0 30px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #fff;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
+
+/* Aplicando un gradiente de color al título */
+h1::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 10px;
+  background: linear-gradient(to right, #ff6a00, #ee0979, #ff6a00);
+}
+
+/* Añadiendo animación de texto ondulado */
+h1 span {
+  display: inline-block;
+  animation: wave 1s infinite;
+}
+
+@keyframes wave {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 
 
 /* Estilos generales */
