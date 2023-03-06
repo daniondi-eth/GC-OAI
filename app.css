@@ -38,6 +38,12 @@ h1 span {
   }
 }
 
+/* Agregando un margen superior a los div de botones */
+form div:nth-child(n+4) {
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid #ccc;
+}
 
 
 /* Estilos generales */
