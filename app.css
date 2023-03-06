@@ -11,15 +11,6 @@ h1 {
   text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* Aplicando un gradiente de color al título */
-h1::after {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 10px;
-  background: linear-gradient(to right, #ff6a00, #ee0979, #ff6a00);
-}
-
 /* Añadiendo animación de texto ondulado */
 h1 span {
   display: inline-block;
