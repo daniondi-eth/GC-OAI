@@ -58,133 +58,41 @@
         </table>
       </div>
     </form>
+    
     <script>
-function extract_text(variations) {
-  const text = variations
-    .filter((variation) => variation.body && variation.body.blocks)
-    .map((variation) =>
-      variation.body.blocks
-        .filter((block) => block.paragraph && block.paragraph.blocks)
-        .map((block) =>
-          block.paragraph.blocks
-            .filter((b) => b.text && b.text.text)
-            .map((b) => b.text.text)
-            .join(" ")
-        )
-        .join(" ")
-    )
-    .join(" ");
-  return text;
-}
-
-function handleFileSelect(event) {
-  const input = event.target;
-  if (!input || !input.files || input.files.length === 0) {
-    return;
-  }
-  const file = input.files[0];
-  const reader = new FileReader();
-  reader.onload = function () {
-    const json = JSON.parse(reader.result);
-    const documents = json.documents;
-    const jsonl = documents.map((document) => {
-      const title = document.published.title;
-      const text = extract_text(document.published.variations);
-      return { prompt: title, completion: text };
-    });
-    const jsonlString = jsonl.map((line) => JSON.stringify(line)).join("\n");
-    const preview = document.getElementById("jsonl-preview");
-    preview.value = jsonlString.split("\n").slice(0, 50).join("\n");
-  };
-  reader.readAsText(file);
-}
-
-function uploadJSONL(jsonl) {
-  const endpoint = "https://api.openai.com/v1/files";
-  const purpose = "fine-tune";
-  const file = new Blob([jsonl], { type: "text/plain" });
-  const API_KEY = document.getElementById("API_KEY").value;
-  const formData = new FormData();
-  formData.append("purpose", purpose);
-  formData.append("file", file);
-  const xhr = new XMLHttpRequest();
-  xhr.open("POST", endpoint);
-  xhr.setRequestHeader("Authorization", "Bearer " + API_KEY);
-  xhr.onload = function () {
-    const result = JSON.parse(xhr.responseText);
-    const resultTextarea = document.getElementById("upload-result");
-    resultTextarea.value = JSON.stringify(result, null, 2);
-  };
-  xhr.send(formData);
-}
-
-const form = document.querySelector("form");
-form.addEventListener("change", handleFileSelect);
-
-const uploadButton = document.getElementById("upload-button");
-uploadButton.addEventListener("click", function () {
-  const preview = document.getElementById("jsonl-preview");
-  const jsonl = preview.value;
-  uploadJSONL(jsonl);
-});
-const fineTuneButton = document.getElementById("fine-tune-button");
-fineTuneButton.addEventListener("click", function () {
-  const API_KEY = document.getElementById("API_KEY").value;
-  const fileId = document.getElementById("training-file").value;
-  const model = document.getElementById("model").value;
-  const xhr = new XMLHttpRequest();
-  xhr.open("POST", "https://api.openai.com/v1/fine-tunes");
-  xhr.setRequestHeader("Content-Type", "application/json");
-  xhr.setRequestHeader("Authorization", "Bearer " + API_KEY);
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      const result = JSON.parse(xhr.responseText);
-      const resultTextarea = document.getElementById("fine-tune-result");
-      resultTextarea.value = JSON.stringify(result, null, 2);
-    }
-  };
-  console.log ("fileId: " + fileId);
-  const data = JSON.stringify({model: model, training_file: fileId});
-  xhr.send(data);
-});
-
-
-const listButton = document.getElementById("list-button");
-listButton.addEventListener("click", function () {
-  const API_KEY = document.getElementById("API_KEY").value;
-  const xhr = new XMLHttpRequest();
-  xhr.open("GET", "https://api.openai.com/v1/fine-tunes");
-  xhr.setRequestHeader("Authorization", "Bearer " + API_KEY);
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      const fineTunes = JSON.parse(xhr.responseText).data;
-      const tableBody = document.querySelector("#fine-tunes-table tbody");
-      tableBody.innerHTML = "";
-      fineTunes.forEach((fineTune) => {
-        const row = document.createElement("tr");
-        const idCell = document.createElement("td");
-        idCell.innerText = fineTune.id;
-        const fineTunedModelCell = document.createElement("td");
-        fineTunedModelCell.innerText = fineTune.fine_tuned_model;
-        const statusCell = document.createElement("td");
-        statusCell.innerText = fineTune.status;
-        const fineTuneIdCell = document.createElement("td");
-        fineTuneIdCell.innerText = fineTune.id;
-        row.appendChild(idCell);
-        row.appendChild(fineTunedModelCell);
-        row.appendChild(statusCell);
-        tableBody.appendChild(row);
-        if (fineTune.model) {
-          fineTune.model = fineTune.model.model_id;
-        }
+      // Obtain a reference to the GC platformClient object
+      const platformClient = require('platformClient');
+      
+      <script src="./fineTune.js"></script>
+      <script src="./listFineTunes.js"></script>
+      <script src="./extract_text.js"></script>
+      <script src="./handleFileSelect.js"></script>
+      <script src="./uploadJSONL.js"></script>
+    
+      const form = document.querySelector('form');
+      form.addEventListener("change", function (event) {
+        handleFileSelect(event);
       });
-    }
-  };
-  xhr.send();
-});
+    
+      const uploadButton = document.getElementById("upload-button");
+      uploadButton.addEventListener("click", function () {
+        const preview = document.getElementById("jsonl-preview");
+        const jsonl = preview.value;
+        uploadJSONL(jsonl);
+      });
+    
+      const fineTuneButton = document.getElementById("fine-tune-button");
+      fineTuneButton.addEventListener("click", function () {
+        fineTune();
+      });
 
 
+      const listButton = document.getElementById("list-button");
+      listButton.addEventListener("click", function () {
+        listFineTunes();
+      });
 
     </script>
+    
   </body>
 </html>
