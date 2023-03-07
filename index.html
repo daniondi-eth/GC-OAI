@@ -63,6 +63,19 @@
           <tbody></tbody>
         </table>
       </div>
+      <div>
+        <button id="knowledge-bases-button" type="button">Get Knowledge Bases</button>
+        <table id="knowledge-bases-table">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>      
     </form>
 
     <script>
@@ -100,6 +113,11 @@
       listButton.addEventListener("click", function () {
         listFineTunes();
       });
+      
+      const getKnowledgeBasesButton = document.getElementById("knowledge-bases-button");
+      getKnowledgeBasesButton.addEventListener("click", function () {
+        GetKnowledgeBase();
+      });      
 
     </script>
     
