@@ -1,4 +1,4 @@
-      function handleFileSelect(event) {
+function handleFileSelect(event) {
         const input = event.target;
         if (!input || !input.files || input.files.length === 0) {
           return;
@@ -18,6 +18,5 @@
           preview.value = jsonlString.split("\n").slice(0, 50).join("\n");
         };
         reader.readAsText(file);
-      }
-module.exports = {handleFileSelect};
+}
 
