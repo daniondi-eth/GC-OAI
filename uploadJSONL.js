@@ -16,5 +16,5 @@
         };
         xhr.send(formData);
       }
-module.exports = { extract_text, handleFileSelect, uploadJSONL, listFineTunes, fineTune };
+module.exports = {uploadJSONL};
 
