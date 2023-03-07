@@ -11,36 +11,22 @@ h1 {
   text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* Añadiendo animación de texto ondulado */
-h1 span {
-  display: inline-block;
-  animation: wave 1s infinite;
-}
-
-/* Agregando los logos */
+/* Agregando un logo */
 h1::before {
-  content: "";
+  content: url("https://www.genesys.com/themes/custom/genesys/assets/images/favicon/android-chrome-192x192.png");
   display: inline-block;
-  width: 140px;
-  height: 140px;
-  background-image: none;
-  background-size: contain;
-  background-repeat: no-repeat;
-  margin-right: 20px;
+  margin-right: 10px;
   vertical-align: middle;
 }
 
+/* Añadiendo otro logo */
 h1::after {
-  content: "";
+  content: url("https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/OpenAI_Logo.svg/2560px-OpenAI_Logo.svg.png");
   display: inline-block;
-  width: 200px;
-  height: 100px;
-  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/OpenAI_Logo.svg/2560px-OpenAI_Logo.svg.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  margin-left: 20px;
+  margin-left: 10px;
   vertical-align: middle;
 }
+
 
 
 @keyframes wave {
