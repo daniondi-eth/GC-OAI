@@ -1,3 +1,6 @@
+    // Obtain a reference to the platformClient object
+    const platformClient = require('purecloud-platform-client-v2');
+
     const clientId = '--- CLIENT ID HERE ---';
     const redirectUri = 'http://localhost:8080/index.html';
 
