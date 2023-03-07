@@ -19,3 +19,5 @@
         };
         reader.readAsText(file);
       }
+module.exports = { extract_text, handleFileSelect, uploadJSONL, listFineTunes, fineTune };
+
