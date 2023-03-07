@@ -91,3 +91,4 @@ function GetKnowledgeBase() {
     }); 
   }
 }
+module.exports = {GetKnowledgeBase};
