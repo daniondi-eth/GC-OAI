@@ -14,6 +14,5 @@ function uploadJSONL(jsonl,API_KEY) {
           resultTextarea.value = JSON.stringify(result, null, 2);
         };
         xhr.send(formData);
-      }
-module.exports = {uploadJSONL};
+}
 
