@@ -18,4 +18,3 @@ function fineTune() {
   xhr.send(data);
 }
 
-module.exports = { fineTune };
