@@ -7,12 +7,29 @@ function GetKnowledgeBase() {
   client.loginImplicitGrant(clientId, redirectUri, { state: state })
     .then((data) => {
       console.log(data);
+      ListBases();
       KnowledgeExportJob();
     })
     .catch((err) => {
       // Handle failure response
       console.log("error authenticating through Implicit grant: " err);
     });
+  
+  function ListBases() {
+    let apiInstance = new platformClient.KnowledgeApi();
+
+    let opts = {};
+
+    // Get knowledge bases
+    apiInstance.getKnowledgeKnowledgebases(opts)
+      .then((data) => {
+        console.log(`getKnowledgeKnowledgebases success! data: ${JSON.stringify(data, null, 2)}`);
+      })
+      .catch((err) => {
+        console.log("There was a failure calling getKnowledgeKnowledgebases");
+        console.error(err);
+      });    
+  }
 
   function KnowledgeExportJob() {
     let apiInstance = new platformClient.KnowledgeApi();
