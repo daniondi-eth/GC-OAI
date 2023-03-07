@@ -17,6 +17,31 @@ h1 span {
   animation: wave 1s infinite;
 }
 
+/* Agregando los logos */
+h1::before {
+  content: "";
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  background-image: url("https://higherlogicdownload.s3.amazonaws.com/GENESYS/fcf56705-8675-4314-9285-232433aee8ee/UploadedImages/Genesys_Cloud-Icon_only-RGB-color__1_.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-right: 20px;
+  vertical-align: middle;
+}
+
+h1::after {
+  content: "";
+  display: inline-block;
+  width: 200px;
+  height: 100px;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/OpenAI_Logo.svg/2560px-OpenAI_Logo.svg.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: 20px;
+  vertical-align: middle;
+}
+
 @keyframes wave {
   0% {
     transform: translateY(0);
