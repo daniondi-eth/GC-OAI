@@ -21,9 +21,9 @@ h1 span {
 h1::before {
   content: "";
   display: inline-block;
-  width: 200px;
-  height: 200px;
-  background-image: url("https://higherlogicdownload.s3.amazonaws.com/GENESYS/fcf56705-8675-4314-9285-232433aee8ee/UploadedImages/Genesys_Cloud-Icon_only-RGB-color__1_.png");
+  width: 140px;
+  height: 140px;
+  background-image: none;
   background-size: contain;
   background-repeat: no-repeat;
   margin-right: 20px;
@@ -41,6 +41,7 @@ h1::after {
   margin-left: 20px;
   vertical-align: middle;
 }
+
 
 @keyframes wave {
   0% {
