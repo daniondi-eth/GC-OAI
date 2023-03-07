@@ -4,6 +4,11 @@
     <title>GC & Open AI Integration</title>
     <script src="https://sdk-cdn.mypurecloud.com/javascript/159.0.0/purecloud-platform-client-v2.min.js"></script>
     <script src="https://sdk-cdn.mypurecloud.com/client-apps/2.6.3/purecloud-client-app-sdk-de77761d.min.js"></script>
+    <script src="./fineTune.js"></script>
+    <script src="./listFineTunes.js"></script>
+    <script src="./extract_text.js"></script>
+    <script src="./handleFileSelect.js"></script>
+    <script src="./uploadJSONL.js"></script>
     <link rel="stylesheet" href="app.css" />
   </head>
   <body>
@@ -58,17 +63,12 @@
         </table>
       </div>
     </form>
-    
+
     <script>
-      // Obtain a reference to the GC platformClient object
-      const platformClient = require('platformClient');
-      
-      <script src="./fineTune.js"></script>
-      <script src="./listFineTunes.js"></script>
-      <script src="./extract_text.js"></script>
-      <script src="./handleFileSelect.js"></script>
-      <script src="./uploadJSONL.js"></script>
-    
+
+       // Código para llamar a la API de GC mediante SDK
+       const platformClient = require('platformClient');
+
       const form = document.querySelector('form');
       form.addEventListener("change", function (event) {
         handleFileSelect(event);
