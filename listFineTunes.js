@@ -31,4 +31,3 @@ function listFineTunes() {
   xhr.send();
 }
 
-module.exports = { listFineTunes };
