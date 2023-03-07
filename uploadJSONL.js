@@ -1,8 +1,7 @@
-      function uploadJSONL(jsonl) {
+function uploadJSONL(jsonl,API_KEY) {
         const endpoint = "https://api.openai.com/v1/files";
         const purpose = "fine-tune";
         const file = new Blob([jsonl], { type: "text/plain" });
-        const API_KEY = document.getElementById("API_KEY").value;
         const formData = new FormData();
         formData.append("purpose", purpose);
         formData.append("file", file);
