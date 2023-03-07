@@ -1,9 +1,8 @@
 function GetKnowledgeBase() {
 
   const platformClient = require("purecloud-platform-client-v2");
-  client.setEnvironment(platformClient.PureCloudRegionHosts.eu-west-1); // Genesys Cloud region
-
   const client = platformClient.ApiClient.instance;
+  client.setEnvironment(platformClient.PureCloudRegionHosts.eu-west-1); // Genesys Cloud region  
   client.loginImplicitGrant(clientId, redirectUri, { state: state })
     .then((data) => {
       console.log(data);
