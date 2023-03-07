@@ -12,7 +12,7 @@ function GetKnowledgeBase() {
     })
     .catch((err) => {
       // Handle failure response
-      console.log("error authenticating through Implicit grant: " err);
+      console.log("error authenticating through Implicit grant: "+ err);
     });
   
   function ListBases() {
