@@ -99,12 +99,12 @@
         handleFileSelect(event);
       });
       */
-    
+      const API_KEY = document.getElementById("API_KEY").value;
       const uploadButton = document.getElementById("upload-button");
       uploadButton.addEventListener("click", function () {
         const preview = document.getElementById("jsonl-preview");
         const jsonl = preview.value;
-        uploadJSONL(jsonl);
+        uploadJSONL(jsonl,API_KEY);
       });
     
       const fineTuneButton = document.getElementById("fine-tune-button");
