@@ -15,5 +15,5 @@ function extract_text(variations) {
           .join(" ");
         return text;
 }
-module.exports = { extract_text, handleFileSelect, uploadJSONL, listFineTunes, fineTune };
+module.exports = {extract_text};
 
