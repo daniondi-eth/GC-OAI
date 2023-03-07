@@ -17,6 +17,8 @@ h1::before {
   display: inline-block;
   margin-right: 10px;
   vertical-align: middle;
+  width: 200px;
+  height: 200px;
 }
 
 /* Añadiendo otro logo */
@@ -25,6 +27,8 @@ h1::after {
   display: inline-block;
   margin-left: 10px;
   vertical-align: middle;
+  width: 200px;
+  height: 200px;
 }
 
 
