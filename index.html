@@ -66,8 +66,16 @@
 
     <script>
 
-       // Código para llamar a la API de GC mediante SDK
-       const platformClient = require('platformClient');
+      document.addEventListener('DOMContentLoaded', function () {
+          var ClientApp = window.purecloud.apps.ClientApp;
+          var myClientApp = new ClientApp({
+              gcHostOriginQueryParam: 'gcHostOrigin',
+              gcTargetEnvQueryParam: 'gcTargetEnv'
+          });
+          myClientApp.alerting.showToastPopup('Hello', 'Genesys Cloud');
+      });
+      const region = myClientApp.gcEnvironment;//GC region such as "https://apps.mypurecloud.ie"
+      console.log("region:" region);
 
       const form = document.querySelector('form');
       form.addEventListener("change", function (event) {
