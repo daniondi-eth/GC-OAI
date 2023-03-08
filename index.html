@@ -83,13 +83,8 @@
 
     <script>
       
-      window.gcClientId = process.env.gcClientId;
-      window.gcClientSecret = process.env.gcClientSecret;
-      window.OAIApiKey = process.env.OAIApiKey;
-      const gcClientId = window.gcClientId;
-      console.log("gcClientId:" + gcClientId);
-      const gcClientSecret = window.gcClientSecret;
-      const OAIApiKey = window.OAIApiKey;
+      const OAIApiKey = document.getElementById("API_KEY");
+      console.log("API_KEY:" + API_KEY);
       
       const platformClient = require('platformClient');
       document.addEventListener('DOMContentLoaded', function () {
