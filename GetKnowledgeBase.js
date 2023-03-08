@@ -1,19 +1,43 @@
 function GetKnowledgeBase() {
 
-    const platformClient = require('platformClient');
-    let apiInstance = new platformClient.KnowledgeApi();
-    let opts = {};
+  const platformClient = require('platformClient');
+  let apiInstance = new platformClient.KnowledgeApi();
+  let opts = {};
 
-    // Get knowledge bases
-    apiInstance.getKnowledgeKnowledgebases(opts)
-      .then((data) => {
-        console.log(`getKnowledgeKnowledgebases success! data: ${JSON.stringify(data, null, 2)}`);
-      })
-      .catch((err) => {
-        console.log("There was a failure calling getKnowledgeKnowledgebases");
-        console.error(err);
-      });    
-  }
+  // Get knowledge bases
+  apiInstance.getKnowledgeKnowledgebases(opts)
+    .then((data) => {
+      console.log(`getKnowledgeKnowledgebases success! data: ${JSON.stringify(data, null, 2)}`);
+
+      const tableBody = document.querySelector('#knowledge-bases-table tbody');
+      data.entities.forEach((knowledgeBase) => {
+        const row = document.createElement('tr');
+        const idCell = document.createElement('td');
+        const nameCell = document.createElement('td');
+        const descriptionCell = document.createElement('td');
+        const coreLanguageCell = document.createElement('td');
+        const articleCountCell = document.createElement('td');
+
+        idCell.innerText = knowledgeBase.id;
+        nameCell.innerText = knowledgeBase.name;
+        descriptionCell.innerText = knowledgeBase.description;
+        coreLanguageCell.innerText = knowledgeBase.coreLanguage;
+        articleCountCell.innerText = knowledgeBase.articleCount;
+
+        row.appendChild(idCell);
+        row.appendChild(nameCell);
+        row.appendChild(descriptionCell);
+        row.appendChild(coreLanguageCell);
+        row.appendChild(articleCountCell);
+        tableBody.appendChild(row);
+      });
+    })
+    .catch((err) => {
+      console.log("There was a failure calling getKnowledgeKnowledgebases");
+      console.error(err);
+    });    
+}
+
 
   function KnowledgeExportJob() {
     let apiInstance = new platformClient.KnowledgeApi();
