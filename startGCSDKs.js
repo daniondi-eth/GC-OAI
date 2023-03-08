@@ -87,7 +87,7 @@ function startGCSDKs(clientId) {
         let local_lang = localStorage.getItem(`${appName}_language`);
         if(local_lang) language = local_lang;
       }
-      let environment = "mypurecloud.ie";//default value
+      environment = "mypurecloud.ie";//default value
       if(searchParams.has(qParamEnvironment)){
         environment = searchParams.get(qParamEnvironment);
         localStorage.setItem(`${appName}_environment`, environment);        
