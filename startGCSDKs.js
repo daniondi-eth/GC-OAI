@@ -1,13 +1,13 @@
 function startGCSDKs(clientId) {
   
-    const appName = 'GC & OAI Integration';
+    const appName = 'app name';
     const qParamLanguage = 'language';
     const qParamEnvironment = 'environment';
 
     // Default values are assigned but values should 
     // be set on the function 'assignConfiguration'
     let language = 'en-us';
-    let environment = 'mypurecloud.ie'; 
+    let environment = 'mypurecloud.com'; 
 
     let userDetails = null;    
   
