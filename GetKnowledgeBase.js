@@ -77,6 +77,9 @@ function KnowledgeExportJob(knowledgeBaseId) {
   let apiInstance = new platformClient.KnowledgeApi();
 
   const apiComponent = {
+    
+    props: ['knowledgeBaseId'],
+    
     data: function() {
       return {
         response: null,
