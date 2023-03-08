@@ -47,7 +47,7 @@ function GetKnowledgeBase() {
       exportButton.addEventListener('click', () => {
         const selectedId = document.querySelector('input[name="knowledgeBase"]:checked');
         if (selectedId) {
-          KnowledgeExportJob(selectedId.value);
+          KnowledgeExportJob(event, selectedId.value);
         }
       });
       const exportButtonRow = document.createElement('tr');
@@ -78,7 +78,7 @@ function GetKnowledgeBase() {
 }
 function KnowledgeExportJob(event, knowledgeBaseId) {
   
-  event.stopPropagation(); // evita que la página se recargue
+  event.preventDefault(); // evita que la página se recargue
   const platformClient = require('platformClient');
   let apiInstance = new platformClient.KnowledgeApi();
 
