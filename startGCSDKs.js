@@ -7,7 +7,7 @@ function startGCSDKs(clientId, region) {
     // Default values are assigned but values should 
     // be set on the function 'assignConfiguration'
     let language = 'en-us';
-    let environment = 'mypurecloud.com'; 
+    let environment = region; 
     let redirectUri = 'http://localhost'; 
 
     let userDetails = null;    
@@ -87,7 +87,6 @@ function startGCSDKs(clientId, region) {
         let local_env = localStorage.getItem(`${appName}_environment`);
         if(local_env) environment = local_env;
       }
-      environment = environment ? environment : region;
       console.log("environment de assignConfiguration: " + environment);
       console.log("clientId de assignConfiguration: " + clientId);
       const redirectUri = 'https://apps.' + environment + '/admin/#/admin/oauth/authorizations/' + clientId;
