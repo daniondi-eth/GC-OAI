@@ -1,22 +1,6 @@
 function GetKnowledgeBase() {
 
-  const platformClient = require("purecloud-platform-client-v2");
-  const client = platformClient.ApiClient.instance;
-  client.setEnvironment(platformClient.PureCloudRegionHosts.eu-west-1); // Genesys Cloud region  
-  client.loginImplicitGrant(clientId, redirectUri, { state: state })
-    .then((data) => {
-      console.log(data);
-      ListBases();
-      KnowledgeExportJob();
-    })
-    .catch((err) => {
-      // Handle failure response
-      console.log("error authenticating through Implicit grant: "+ err);
-    });
-  
-  function ListBases() {
     let apiInstance = new platformClient.KnowledgeApi();
-
     let opts = {};
 
     // Get knowledge bases
@@ -88,5 +72,4 @@ function GetKnowledgeBase() {
         'api-component': apiComponent
       }
     }); 
-  }
 }
