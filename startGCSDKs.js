@@ -8,7 +8,6 @@ function startGCSDKs(clientId) {
     // be set on the function 'assignConfiguration'
     let language = 'en-us';
     let redirectUri = 'https://daniondi-eth.github.io/GC-OAI/'; 
-    let environment = region; 
     let userDetails = null;    
   
     // After page loads...
