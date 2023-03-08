@@ -108,8 +108,9 @@
       });
       
       const getKnowledgeBasesButton = document.getElementById("knowledge-bases-button");
+      const selectedKnowledgeBaseId = document.getElementById("selectedKnowledgeBaseId");
       getKnowledgeBasesButton.addEventListener("click", function () {
-        GetKnowledgeBase();
+        GetKnowledgeBase(KnowledgeExportJob.bind(null, selectedKnowledgeBaseId));
         console.log("debug: GetKnowledgeBase executed");
       });
 
