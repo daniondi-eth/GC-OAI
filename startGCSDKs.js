@@ -1,6 +1,6 @@
 function startGCSDKs(clientId) {
   
-    const redirectUri = 'http://localhost:8080/index.html';
+    const redirectUri = 'https://daniondi-eth.github.io/GC-OAI/index.html';
     const appName = 'sample_app';
     const qParamLanguage = 'language';
     const qParamEnvironment = 'environment';
