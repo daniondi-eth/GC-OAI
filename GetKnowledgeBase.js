@@ -77,7 +77,7 @@ function GetKnowledgeBase() {
   });
 
 }
-function KnowledgeExportJob(event, knowledgeBaseId) {
+function KnowledgeExportJob(event, knowledgeBaseId, selectedKnowledgeBaseId) {
   
   event.preventDefault(); // evita que la página se recargue
   const platformClient = require('platformClient');
@@ -167,7 +167,6 @@ function KnowledgeExportJob(event, knowledgeBaseId) {
 
     template: '#api-component-template'
   };
-  let selectedKnowledgeBaseId = null;
    
   new Vue({
     el: '#app',
