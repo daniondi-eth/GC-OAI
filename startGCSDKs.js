@@ -9,8 +9,25 @@ function startGCSDKs(clientId) {
     let language = 'en-us';
     let environment = 'mypurecloud.ie'; 
 
-    let userDetails = null;
+    let userDetails = null;    
+  
+    // After page loads...
+    window.addEventListener('load', (event) => {
+      assignConfiguration();
+      console.log(`environment: ${environment}`);
+      console.log(`language: ${language}`);
 
+      setupGenesysClients()
+      .then(() => { 
+        // Display values to the page
+        document.getElementById('span_environment').innerText = environment;
+        document.getElementById('span_language').innerText = language;
+        document.getElementById('span_name').innerText = userDetails.name;
+
+        console.log('Finished setup.');
+      })
+    });
+  
     /**
      * Configure both the Platform SDK and the Client App SDK
      */
@@ -69,25 +86,8 @@ function startGCSDKs(clientId) {
         let local_env = localStorage.getItem(`${appName}_environment`);
         if(local_env) environment = local_env;
       }
-      console.log("debug: environment "+environment);
-      const redirectUri = 'https://apps.mypurecloud.ie/admin/#/admin/oauth/authorizations/'+clientId;
+      const redirectUri = 'https://apps.'environment+'/admin/#/admin/oauth/authorizations/'+clientId;
     }
 
 
-    // After page loads...
-    window.addEventListener('load', (event) => {
-      assignConfiguration();
-      console.log(`environment: ${environment}`);
-      console.log(`language: ${language}`);
-
-      setupGenesysClients()
-      .then(() => { 
-        // Display values to the page
-        document.getElementById('span_environment').innerText = environment;
-        document.getElementById('span_language').innerText = language;
-        document.getElementById('span_name').innerText = userDetails.name;
-
-        console.log('Finished setup.');
-      })
-    });
 }
