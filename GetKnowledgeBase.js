@@ -23,6 +23,12 @@ function GetKnowledgeBase() {
         descriptionCell.innerText = knowledgeBase.description;
         coreLanguageCell.innerText = knowledgeBase.coreLanguage;
         articleCountCell.innerText = knowledgeBase.articleCount;
+        
+        const radioInput = document.createElement('input');
+        radioInput.type = 'radio';
+        radioInput.name = 'knowledgeBase';
+        radioInput.value = knowledgeBase.id;
+        radioCell.appendChild(radioInput);
 
         row.appendChild(idCell);
         row.appendChild(nameCell);
