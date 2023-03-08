@@ -1,4 +1,5 @@
 function GetKnowledgeBase() {
+  
   const platformClient = require('platformClient');
   let apiInstance = new platformClient.KnowledgeApi();
   let opts = {};
