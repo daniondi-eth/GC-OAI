@@ -1,5 +1,6 @@
-function startGCSDKs(clientId) {
+function startGCSDKs() {
   
+    const clientId = process.env.gcClientId;
     const redirectUri = 'http://localhost:8080/index.html';
     const appName = 'sample_app';
     const qParamLanguage = 'language';
