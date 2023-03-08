@@ -8,7 +8,8 @@ function startGCSDKs(clientId) {
     // be set on the function 'assignConfiguration'
     let language = 'en-us';
     let redirectUri = 'https://daniondi-eth.github.io/GC-OAI/'; 
-    let userDetails = null;    
+    let userDetails = null;   
+    environment = "mypurecloud.ie";//default value
   
     // After page loads...
     window.addEventListener('load', (event) => {
@@ -87,7 +88,6 @@ function startGCSDKs(clientId) {
         let local_lang = localStorage.getItem(`${appName}_language`);
         if(local_lang) language = local_lang;
       }
-      environment = "mypurecloud.ie";//default value
       if(searchParams.has(qParamEnvironment)){
         environment = searchParams.get(qParamEnvironment);
         localStorage.setItem(`${appName}_environment`, environment);        
