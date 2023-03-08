@@ -76,8 +76,9 @@ function GetKnowledgeBase() {
   });
 
 }
-function KnowledgeExportJob(knowledgeBaseId) {
+function KnowledgeExportJob(event, knowledgeBaseId) {
   
+  event.preventDefault(); // evita que la página se recargue
   const platformClient = require('platformClient');
   let apiInstance = new platformClient.KnowledgeApi();
 
@@ -166,6 +167,16 @@ function KnowledgeExportJob(knowledgeBaseId) {
     template: '#api-component-template'
   };
   let selectedKnowledgeBaseId = null;
+  
+  //plantilla Vue para evitar que al pulsar el botón de createExportJob, se recargue el navegador incluyendo nuevos parámetros en la URL
+  <template>
+    <div>
+      <button @click.prevent="createExportJob">Export Knowledge Base</button>
+      <div v-if="response">Response: {{ response }}</div>
+      <div v-if="error">Error: {{ error }}</div>
+    </div>
+  </template>
+
   
   new Vue({
     el: '#app',
