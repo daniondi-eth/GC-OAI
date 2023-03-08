@@ -16,6 +16,7 @@ jobs:
       env:
         gcClientId: ${{ secrets.gcClientId }}
         gcClientSecret: ${{ secrets.gcClientSecret }}
+        OAIApiKey : ${{ secrets.OAIApiKey  }}
       run: |
         echo "Valor de gcClientId: $gcClientId"
         echo "Valor de gcClientSecret: $gcClientSecret"
