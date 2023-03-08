@@ -8,6 +8,7 @@ function startGCSDKs(clientId) {
     // be set on the function 'assignConfiguration'
     let language = 'en-us';
     let environment = 'mypurecloud.com'; 
+    let redirectUri = 'http://localhost'; 
 
     let userDetails = null;    
   
