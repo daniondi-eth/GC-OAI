@@ -9,7 +9,7 @@ function startGCSDKs() {
     // Default values are assigned but values should 
     // be set on the function 'assignConfiguration'
     let language = 'en-us';
-    let environment = 'mypurecloud.com'; 
+    let environment = 'mypurecloud.ie'; 
 
     let userDetails = null;
 
