@@ -70,6 +70,11 @@ function GetKnowledgeBase() {
       console.log("There was a failure calling getKnowledgeKnowledgebases");
       console.error(err);
     });
+  
+  radioInput.addEventListener('change', function() {
+      selectedKnowledgeBaseId = this.value;
+  });
+
 }
 function KnowledgeExportJob(knowledgeBaseId) {
   
