@@ -1,4 +1,4 @@
-function startGCSDKs(clientId, region) {
+function startGCSDKs(clientId) {
   
     const appName = 'app name';
     const qParamLanguage = 'language';
@@ -39,8 +39,7 @@ function startGCSDKs(clientId, region) {
           var myClientApp = new ClientApp({
              gcHostOriginQueryParam: 'gcHostOrigin',
               gcTargetEnvQueryParam: 'gcTargetEnv'
-          });
-     
+          });     
           myClientApp.alerting.showToastPopup('Hello', 'Genesys Cloud');
           const region = myClientApp.gcEnvironment;//GC region such as "mypurecloud.ie"
       });              
