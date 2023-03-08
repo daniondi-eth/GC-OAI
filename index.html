@@ -82,6 +82,11 @@
     </form>
 
     <script>
+      
+      const gcClientId = process.env.gcClientId;
+      const gcClientSecret = process.env.gcClientSecret;
+      const OAIApiKey = process.env.OAIApiKey;
+      
       const platformClient = require('platformClient');
       document.addEventListener('DOMContentLoaded', function () {
           var ClientApp = window.purecloud.apps.ClientApp;
@@ -92,36 +97,42 @@
           myClientApp.alerting.showToastPopup('Hello', 'Genesys Cloud');
           const region = myClientApp.gcEnvironment;//GC region such as "https://apps.mypurecloud.ie"
           console.log("region:" + region);
+          startGCSDKs(gcClientId);
+          console.log("function startGCSDKs executed");
       });
 
 
       const form = document.querySelector('form');
       form.addEventListener("change", function (event) {
         handleFileSelect(event);
+        console.log("function handleFileSelect executed");
       });
       
-      const API_KEY = document.getElementById("API_KEY").value;
       const uploadButton = document.getElementById("upload-button");
       uploadButton.addEventListener("click", function () {
         const preview = document.getElementById("jsonl-preview");
         const jsonl = preview.value;
-        uploadJSONL(jsonl,API_KEY);
+        uploadJSONL(jsonl,OAIApiKey);
+        console.log("function uploadJSONL executed");
       });
     
       const fineTuneButton = document.getElementById("fine-tune-button");
       fineTuneButton.addEventListener("click", function () {
         fineTune();
+        console.log("function fineTune executed");
       });
 
 
       const listButton = document.getElementById("list-button");
       listButton.addEventListener("click", function () {
         listFineTunes();
+        console.log("function listFineTunes executed");
       });
       
       const getKnowledgeBasesButton = document.getElementById("knowledge-bases-button");
       getKnowledgeBasesButton.addEventListener("click", function () {
         GetKnowledgeBase();
+        console.log("function GetKnowledgeBase executed");
       });
 
     </script>
