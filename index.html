@@ -95,9 +95,8 @@
               gcTargetEnvQueryParam: 'gcTargetEnv'
           });
           myClientApp.alerting.showToastPopup('Hello', 'Genesys Cloud');
-          const region = myClientApp.gcEnvironment;//GC region such as "https://apps.mypurecloud.ie"
-          console.log("region:" + region);
-          startGCSDKs(gcClientId);
+          const region = myClientApp.gcEnvironment;//GC region such as "mypurecloud.ie"
+          startGCSDKs(gcClientId, region);
           console.log("debug: startGCSDKs executed");
       });
 
