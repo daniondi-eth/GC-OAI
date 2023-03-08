@@ -72,6 +72,8 @@ function GetKnowledgeBase() {
     });
 }
 function KnowledgeExportJob(knowledgeBaseId) {
+  
+  const platformClient = require('platformClient');
   let apiInstance = new platformClient.KnowledgeApi();
 
   const apiComponent = {
