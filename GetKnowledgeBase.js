@@ -101,6 +101,8 @@ function KnowledgeExportJob(knowledgeBaseId) {
             this.error = err;
           });
       },
+      
+      
 
       waitForExportJob: function() {
         const checkJobStatus = () => {
@@ -149,24 +151,7 @@ function KnowledgeExportJob(knowledgeBaseId) {
       }
     },
 
-    template: `
-      <div>
-        <form @submit.prevent="createExportJob">
-          <label>Exporting Knowledge Base {{ knowledgeBaseId }}:</label>
-          <button type="submit">Export</button>
-        </form>
-
-        <div v-if="response">
-          <h2>Export Completed Successfully:</h2>
-          <p>{{ response }}</p>
-        </div>
-
-        <div v-if="error">
-          <h2>Error Exporting Knowledge Base:</h2>
-          <pre>{{ error }}</pre>
-        </div>
-      </div>
-    `
+    template: '#api-component-template'
   };
 
   new Vue({
