@@ -39,7 +39,7 @@ function startGCSDKs(clientId) {
 
           myClientApp.alerting.showToastPopup(
             `Hi ${userDetails.name}`, 
-            'Never gonna give you up, never gonna let you down 😊');
+            'Implicit grant login successful');
         })
         .catch(err => console.log(err));
 
