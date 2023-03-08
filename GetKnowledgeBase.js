@@ -78,7 +78,7 @@ function GetKnowledgeBase() {
 }
 function KnowledgeExportJob(event, knowledgeBaseId) {
   
-  event.preventDefault(); // evita que la página se recargue
+  event.stopPropagation(); // evita que la página se recargue
   const platformClient = require('platformClient');
   let apiInstance = new platformClient.KnowledgeApi();
 
@@ -99,7 +99,7 @@ function KnowledgeExportJob(event, knowledgeBaseId) {
         this.response = null;
         this.error = null;
 
-        apiInstance.postKnowledgeKnowledgebaseExportJobs(knowledgeBaseId, {})
+        apiInstance.postKnowledgeKnowledgebaseExportJobs(this.knowledgeBaseId, {})
           .then((data) => {
             console.log(`postKnowledgeKnowledgebaseExportJobs success! data: ${JSON.stringify(data, null, 2)}`);
             this.exportJobId = data.id;
