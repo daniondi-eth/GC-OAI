@@ -163,7 +163,8 @@ function KnowledgeExportJob(knowledgeBaseId) {
 
     template: '#api-component-template'
   };
-
+  let selectedKnowledgeBaseId = null;
+  
   new Vue({
     el: '#app',
 
