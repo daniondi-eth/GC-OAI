@@ -45,10 +45,6 @@ function GetKnowledgeBase() {
       exportButton.innerText = 'Export Knowledge Base';
       exportButton.disabled = true;
     
-      const tableBody = document.querySelector('#knowledge-bases-table tbody');
-      tableBody.innerHTML = '';
-      exportButton.disabled = true;
-
       exportButton.addEventListener('click', () => {
         const selectedId = document.querySelector('input[name="knowledgeBase"]:checked');
         if (selectedId) {
