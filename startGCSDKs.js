@@ -1,6 +1,6 @@
 function startGCSDKs(clientId) {
   
-    const redirectUri = 'https://daniondi-eth.github.io/GC-OAI/index.html';
+    const redirectUri = 'https://apps.mypurecloud.ie/admin/#/admin/oauth/authorizations/'+clientId;
     const appName = 'sample_app';
     const qParamLanguage = 'language';
     const qParamEnvironment = 'environment';
