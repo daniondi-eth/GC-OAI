@@ -86,7 +86,7 @@ function startGCSDKs(clientId) {
         let local_env = localStorage.getItem(`${appName}_environment`);
         if(local_env) environment = local_env;
       }
-      const redirectUri = 'https://apps.'environment+'/admin/#/admin/oauth/authorizations/'+clientId;
+      const redirectUri = 'https://apps.' + environment + '/admin/#/admin/oauth/authorizations/' + clientId;
       return redirectUri;
     }
 
