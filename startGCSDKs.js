@@ -8,7 +8,7 @@ function startGCSDKs(clientId, region) {
     // be set on the function 'assignConfiguration'
     let language = 'en-us';
     let environment = region; 
-    let redirectUri = 'http://localhost'; 
+    let redirectUri = 'https://daniondi-eth.github.io/GC-OAI/'; 
 
     let userDetails = null;    
   
@@ -87,11 +87,6 @@ function startGCSDKs(clientId, region) {
         let local_env = localStorage.getItem(`${appName}_environment`);
         if(local_env) environment = local_env;
       }
-      console.log("environment de assignConfiguration: " + environment);
-      console.log("clientId de assignConfiguration: " + clientId);
-      const redirectUri = 'https://apps.' + environment + '/admin/#/admin/oauth/authorizations/' + clientId;
-      console.log("redirectUri de assignConfiguration: " + redirectUri);
-      return redirectUri;
     }
 
 
