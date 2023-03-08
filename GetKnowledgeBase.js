@@ -121,6 +121,17 @@ function KnowledgeExportJob(knowledgeBaseId) {
               console.log(`getKnowledgeKnowledgebaseExportJobs success! data: ${JSON.stringify(data, null, 2)}`);
               if (data.status === 'completed') {
                 this.downloadExportFile(data.downloadUrl);
+                .then((data) => {
+                  console.log(`getKnowledgeKnowledgebaseExportJobs success! data: ${JSON.stringify(data, null, 2)}`);
+                  if (data.status === 'completed') {
+                    this.downloadExportFile(data.downloadUrl);
+                    uploadJSONL(data.resultsUrl, OAIApiKey); // Llamada a uploadJSONL
+                  } else if (data.status === 'failed') {
+                    this.error = new Error('Export job failed');
+                  } else {
+                    setTimeout(checkJobStatus, 5000);
+                  }
+                })
               } else if (data.status === 'failed') {
                 this.error = new Error('Export job failed');
               } else {
