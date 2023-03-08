@@ -7,16 +7,15 @@ function startGCSDKs(clientId, region) {
     // Default values are assigned but values should 
     // be set on the function 'assignConfiguration'
     let language = 'en-us';
-    let environment = region; 
     let redirectUri = 'https://daniondi-eth.github.io/GC-OAI/'; 
-
+    let environment = region; 
     let userDetails = null;    
   
     // After page loads...
     window.addEventListener('load', (event) => {
       assignConfiguration();
-      console.log(`environment: ${environment}`);
-      console.log(`language: ${language}`);
+      console.log(`environment after addEventListener: ${environment}`);
+      console.log(`language after addEventListener: ${language}`);
 
       setupGenesysClients(redirectUri)
       .then(() => { 
@@ -35,6 +34,17 @@ function startGCSDKs(clientId, region) {
     function setupGenesysClients(redirectUri){
       const platformClient = require('platformClient');
       const client = platformClient.ApiClient.instance;
+      document.addEventListener('DOMContentLoaded', function () {
+          var ClientApp = window.purecloud.apps.ClientApp;
+          var myClientApp = new ClientApp({
+             gcHostOriginQueryParam: 'gcHostOrigin',
+              gcTargetEnvQueryParam: 'gcTargetEnv'
+          });
+     
+          myClientApp.alerting.showToastPopup('Hello', 'Genesys Cloud');
+          const region = myClientApp.gcEnvironment;//GC region such as "mypurecloud.ie"
+      });              
+      
       const usersApi = new platformClient.UsersApi();
 
       // Configure Client App
@@ -88,6 +98,4 @@ function startGCSDKs(clientId, region) {
         if(local_env) environment = local_env;
       }
     }
-
-
 }
