@@ -86,20 +86,8 @@
       
       const OAIApiKey = document.getElementById("API_KEY");
       const gcClientId = 'ad6a9e4d-9694-4775-9e3f-6e590076508c';
-      
-      const platformClient = require('platformClient');
-      document.addEventListener('DOMContentLoaded', function () {
-          var ClientApp = window.purecloud.apps.ClientApp;
-          var myClientApp = new ClientApp({
-             gcHostOriginQueryParam: 'gcHostOrigin',
-              gcTargetEnvQueryParam: 'gcTargetEnv'
-          });
-          myClientApp.alerting.showToastPopup('Hello', 'Genesys Cloud');
-          const region = myClientApp.gcEnvironment;//GC region such as "mypurecloud.ie"
-          startGCSDKs(gcClientId, region);
-          console.log("debug: startGCSDKs executed");
-      });
-
+      startGCSDKs(gcClientId);
+      console.log("debug: startGCSDKs executed");
 
       const form = document.querySelector('form');
       form.addEventListener("change", function (event) {
