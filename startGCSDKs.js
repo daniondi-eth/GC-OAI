@@ -16,7 +16,7 @@ function startGCSDKs(clientId) {
       console.log(`environment after addEventListener: ${environment}`);
       console.log(`language after addEventListener: ${language}`);
 
-      setupGenesysClients(redirectUri)
+      setupGenesysClients(redirectUri, environment)
       .then(() => { 
         // Display values to the page
         document.getElementById('span_environment').innerText = environment;
@@ -30,7 +30,7 @@ function startGCSDKs(clientId) {
     /**
      * Configure both the Platform SDK and the Client App SDK
      */
-    function setupGenesysClients(redirectUri){
+    function setupGenesysClients(redirectUri, environment){
       const platformClient = require('platformClient');
       const client = platformClient.ApiClient.instance;
       document.addEventListener('DOMContentLoaded', function () {
