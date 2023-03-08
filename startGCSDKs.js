@@ -1,7 +1,6 @@
 function startGCSDKs(clientId) {
   
-    const redirectUri = 'https://apps.mypurecloud.ie/admin/#/admin/oauth/authorizations/'+clientId;
-    const appName = 'sample_app';
+    const appName = 'GC & OAI Integration';
     const qParamLanguage = 'language';
     const qParamEnvironment = 'environment';
 
@@ -65,11 +64,13 @@ function startGCSDKs(clientId) {
 
       if(searchParams.has(qParamEnvironment)){
         environment = searchParams.get(qParamEnvironment);
-        localStorage.setItem(`${appName}_environment`, environment);
+        localStorage.setItem(`${appName}_environment`, environment);        
       } else {
         let local_env = localStorage.getItem(`${appName}_environment`);
         if(local_env) environment = local_env;
       }
+      console.log("debug: environment "+environment);
+      const redirectUri = 'https://apps.mypurecloud.ie/admin/#/admin/oauth/authorizations/'+clientId;
     }
 
 
