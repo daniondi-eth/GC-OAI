@@ -17,7 +17,7 @@ function startGCSDKs(clientId) {
       console.log(`environment: ${environment}`);
       console.log(`language: ${language}`);
 
-      setupGenesysClients()
+      setupGenesysClients(redirectUri)
       .then(() => { 
         // Display values to the page
         document.getElementById('span_environment').innerText = environment;
@@ -31,7 +31,7 @@ function startGCSDKs(clientId) {
     /**
      * Configure both the Platform SDK and the Client App SDK
      */
-    function setupGenesysClients(){
+    function setupGenesysClients(redirectUri){
       const platformClient = require('platformClient');
       const client = platformClient.ApiClient.instance;
       const usersApi = new platformClient.UsersApi();
@@ -87,6 +87,7 @@ function startGCSDKs(clientId) {
         if(local_env) environment = local_env;
       }
       const redirectUri = 'https://apps.'environment+'/admin/#/admin/oauth/authorizations/'+clientId;
+      return redirectUri;
     }
 
 
