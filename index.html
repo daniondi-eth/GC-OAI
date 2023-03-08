@@ -19,10 +19,6 @@
     <h1>GC & Open AI Integration - fine tuning of AI models</h1>
     <form>
       <div>
-        <label for="API_KEY">Open AI API Key:</label>
-        <input type="password" id="API_KEY" name="API_KEY" required />
-      </div>
-      <div>
         <label for="json-file">Select a JSON file:</label>
         <input type="file" id="json-file" name="json-file" accept=".json" />
       </div>
@@ -106,7 +102,7 @@
 
     <script>
       
-      const OAIApiKey = document.getElementById("API_KEY");
+      const OAIApiKey = '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';
       const gcClientId = 'ad6a9e4d-9694-4775-9e3f-6e590076508c';
       startGCSDKs(gcClientId);
       console.log("debug: startGCSDKs executed");
