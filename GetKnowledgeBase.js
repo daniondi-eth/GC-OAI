@@ -121,17 +121,7 @@ function KnowledgeExportJob(knowledgeBaseId) {
               console.log(`getKnowledgeKnowledgebaseExportJobs success! data: ${JSON.stringify(data, null, 2)}`);
               if (data.status === 'completed') {
                 this.downloadExportFile(data.downloadUrl);
-                .then((data) => {
-                  console.log(`getKnowledgeKnowledgebaseExportJobs success! data: ${JSON.stringify(data, null, 2)}`);
-                  if (data.status === 'completed') {
-                    this.downloadExportFile(data.downloadUrl);
-                    uploadJSONL(data.resultsUrl, OAIApiKey); // Llamada a uploadJSONL
-                  } else if (data.status === 'failed') {
-                    this.error = new Error('Export job failed');
-                  } else {
-                    setTimeout(checkJobStatus, 5000);
-                  }
-                })
+                uploadJSONL(data.resultsUrl, OAIApiKey); // Llamada a uploadJSONL, vinculando resultado de llamada API a GC con primera llamada API a OAI
               } else if (data.status === 'failed') {
                 this.error = new Error('Export job failed');
               } else {
@@ -147,6 +137,7 @@ function KnowledgeExportJob(knowledgeBaseId) {
 
         setTimeout(checkJobStatus, 5000);
       },
+
 
       downloadExportFile: function(downloadUrl) {
         axios.get(downloadUrl, {
