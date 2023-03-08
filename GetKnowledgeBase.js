@@ -47,7 +47,7 @@ function GetKnowledgeBase() {
       exportButton.addEventListener('click', () => {
         const selectedId = document.querySelector('input[name="knowledgeBase"]:checked');
         if (selectedId) {
-          KnowledgeExportJob(event, selectedId.value, selectedKnowledgeBaseId);
+          KnowledgeExportJob(event, selectedId.value);
         }
       });
 
@@ -71,27 +71,24 @@ function GetKnowledgeBase() {
       console.log("There was a failure calling getKnowledgeKnowledgebases");
       console.error(err);
     });
-  
-  radioInput.addEventListener('change', function() {
-      selectedKnowledgeBaseId = this.value;
-  });
-
 }
-function KnowledgeExportJob(event, knowledgeBaseId, selectedKnowledgeBaseId) {
-  
+
+function KnowledgeExportJob(event, knowledgeBaseId) {
   event.preventDefault(); // evita que la página se recargue
+
   const platformClient = require('platformClient');
   let apiInstance = new platformClient.KnowledgeApi();
 
   const apiComponent = {
-    
+
     props: ['knowledgeBaseId'],
-    
+
     data: function() {
       return {
         response: null,
         error: null,
-        exportJobId: null
+        exportJobId: null,
+        selectedKnowledgeBaseId: null
       }
     },
 
@@ -113,17 +110,14 @@ function KnowledgeExportJob(event, knowledgeBaseId, selectedKnowledgeBaseId) {
             this.error = err;
           });
       },
-      
-      
 
       waitForExportJob: function() {
         const checkJobStatus = () => {
-          apiInstance.getKnowledgeKnowledgebaseExportJobs(knowledgeBaseId, this.exportJobId)
+          apiInstance.getKnowledgeKnowledgebaseExportJobs(this.knowledgeBaseId, this.exportJobId)
             .then((data) => {
               console.log(`getKnowledgeKnowledgebaseExportJobs success! data: ${JSON.stringify(data, null, 2)}`);
               if (data.status === 'completed') {
                 this.downloadExportFile(data.downloadUrl);
-                uploadJSONL(data.resultsUrl, OAIApiKey); // Llamada a uploadJSONL, vinculando resultado de llamada API a GC con primera llamada API a OAI
               } else if (data.status === 'failed') {
                 this.error = new Error('Export job failed');
               } else {
@@ -140,7 +134,6 @@ function KnowledgeExportJob(event, knowledgeBaseId, selectedKnowledgeBaseId) {
         setTimeout(checkJobStatus, 5000);
       },
 
-
       downloadExportFile: function(downloadUrl) {
         axios.get(downloadUrl, {
           responseType: 'arraybuffer'
@@ -148,13 +141,12 @@ function KnowledgeExportJob(event, knowledgeBaseId, selectedKnowledgeBaseId) {
         .then((response) => {
           console.log(`downloadExportFile success!`);
 
-          const fileName = `knowledge-base-${knowledgeBaseId}-export.json`;
+          const fileName = `knowledge-base-${this.knowledgeBaseId}-export.json`;
           const file = new Blob([response.data], { type: 'application/json' });
           const link = document.createElement('a');
           link.href = URL.createObjectURL(file);
           link.download = fileName;
           link.click();
-
           this.response = `Export file downloaded as ${fileName}`;
         })
         .catch((err) => {
@@ -167,12 +159,28 @@ function KnowledgeExportJob(event, knowledgeBaseId, selectedKnowledgeBaseId) {
 
     template: '#api-component-template'
   };
-   
+
   new Vue({
     el: '#app',
 
     components: {
       'api-component': apiComponent
+    },
+
+    data: {
+      selectedKnowledgeBaseId: null
+    },
+
+    methods: {
+      setSelectedKnowledgeBaseId: function(knowledgeBaseId) {
+        this.selectedKnowledgeBaseId = knowledgeBaseId;
+      }
     }
+  });
+
+  const instance = new Vue();
+
+  instance.$on('knowledge-base-selected', (knowledgeBaseId) => {
+    instance.setSelectedKnowledgeBaseId(knowledgeBaseId);
   });
 }
