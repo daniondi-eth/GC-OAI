@@ -98,14 +98,14 @@
           const region = myClientApp.gcEnvironment;//GC region such as "https://apps.mypurecloud.ie"
           console.log("region:" + region);
           startGCSDKs(gcClientId);
-          console.log("function startGCSDKs executed");
+          console.log("debug: startGCSDKs executed");
       });
 
 
       const form = document.querySelector('form');
       form.addEventListener("change", function (event) {
         handleFileSelect(event);
-        console.log("function handleFileSelect executed");
+        console.log("debug: handleFileSelect executed");
       });
       
       const uploadButton = document.getElementById("upload-button");
@@ -113,26 +113,26 @@
         const preview = document.getElementById("jsonl-preview");
         const jsonl = preview.value;
         uploadJSONL(jsonl,OAIApiKey);
-        console.log("function uploadJSONL executed");
+        console.log("debug: uploadJSONL executed");
       });
     
       const fineTuneButton = document.getElementById("fine-tune-button");
       fineTuneButton.addEventListener("click", function () {
         fineTune();
-        console.log("function fineTune executed");
+        console.log("debug: fineTune executed");
       });
 
 
       const listButton = document.getElementById("list-button");
       listButton.addEventListener("click", function () {
         listFineTunes();
-        console.log("function listFineTunes executed");
+        console.log("debug: listFineTunes executed");
       });
       
       const getKnowledgeBasesButton = document.getElementById("knowledge-bases-button");
       getKnowledgeBasesButton.addEventListener("click", function () {
         GetKnowledgeBase();
-        console.log("function GetKnowledgeBase executed");
+        console.log("debug: GetKnowledgeBase executed");
       });
 
     </script>
