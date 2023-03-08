@@ -13,7 +13,8 @@
     <script src="./uploadJSONL.js"></script>
     <script src="./GetKnowledgeBase.js"></script>
     <script src="./startGCSDKs.js"></script>
-    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="app.css" /> 
+    
   </head>
   <body>
     <h1>GC & Open AI Integration - fine tuning of AI models</h1>
@@ -71,22 +72,11 @@
       </div>
       <template id="api-component-template">
         <div>
-          <form @submit.prevent="createExportJob">
-            <label>Exporting Knowledge Base {{ knowledgeBaseId }}:</label>
-            <button type="submit">Export</button>
-          </form>
-
-          <div v-if="response">
-            <h2>Export Completed Successfully:</h2>
-            <p>{{ response }}</p>
-          </div>
-
-          <div v-if="error">
-            <h2>Error Exporting Knowledge Base:</h2>
-            <pre>{{ error }}</pre>
-          </div>
+          <button @click.prevent="createExportJob">Export Knowledge Base</button>
+          <div v-if="response">Response: {{ response }}</div>
+          <div v-if="error">Error: {{ error }}</div>
         </div>
-      </template>      
+      </template>    
     </form>
 
     <script>
