@@ -47,9 +47,10 @@ function GetKnowledgeBase() {
       exportButton.addEventListener('click', () => {
         const selectedId = document.querySelector('input[name="knowledgeBase"]:checked');
         if (selectedId) {
-          KnowledgeExportJob(event, selectedId.value);
+          KnowledgeExportJob(event, selectedId.value, selectedKnowledgeBaseId);
         }
       });
+
       const exportButtonRow = document.createElement('tr');
       const exportButtonCell = document.createElement('td');
       exportButtonCell.colSpan = 6;
