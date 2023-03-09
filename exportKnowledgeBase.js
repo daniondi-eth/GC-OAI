@@ -7,9 +7,12 @@ function exportKnowledgeBase() {
 
   // Crear el job de exportación
   const opts = {
-    'body': {
-      'fileType': 'json'
-    }
+    'exportFilter': {
+        'documentsFilter': null, 
+        'versionFilter': 'Latest'
+    }, 
+    'fileType': 'json'
+  }
   };
   apiInstance.postKnowledgeKnowledgebaseExportJobs(knowledgeBaseId, opts)
     .then((response) => {
