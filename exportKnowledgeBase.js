@@ -41,4 +41,5 @@ function exportKnowledgeBase(event,knowledgeBaseId) {
       console.log('There was a failure calling postKnowledgeKnowledgebaseLanguageBulkexport');
       console.error(err);
     });
+    selectedKnowledgeBaseId = knowledgeBaseId; // Establece el valor de la variable global
 }
