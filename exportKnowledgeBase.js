@@ -23,7 +23,8 @@ function exportKnowledgeBase() {
         apiInstance.getKnowledgeKnowledgebaseExportJob(knowledgeBaseId, jobId)
           .then((job) => {
             console.log(job);
-            if (job.status === 'COMPLETED') {
+            console.log("El status del job es: "+job.status);
+            if (job.status === 'Completed') {
               clearInterval(intervalId);
               downloadJSON(job.outputUrl);
             }
