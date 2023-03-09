@@ -24,7 +24,7 @@ function exportKnowledgeBase() {
           .then((job) => {
             console.log(job);
             console.log("El status del job es: "+job.status);
-            if (job.status === 'Completed') {
+            if (job.status.toLowerCase() === 'completed') {
               clearInterval(intervalId);
               downloadJSON(job.outputUrl);
             }
