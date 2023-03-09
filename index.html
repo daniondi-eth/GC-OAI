@@ -70,16 +70,9 @@
           <tbody></tbody>
         </table>
       </div>
-      <div id="app">
-        <api-component :knowledge-base-id="selectedKnowledgeBaseId"></api-component>
+      <div>      
+        <button id="export-knowledge-base-button" type="button" style="display: none;">Export Knowledge Base</button>
       </div>
-      <template id="api-component-template">
-        <div>
-          <button @click.prevent="exportKnowledgeBase($event, kb.id)">Export Knowledge Base</button>
-          <div v-if="response">Response: {{ response }}</div>
-          <div v-if="error">Error: {{ error }}</div>
-        </div>
-      </template>    
     </form>
 
     <script>
@@ -110,8 +103,19 @@
         console.log("debug: listFineTunes executed");
       });
 
-      const getKnowledgeBasesButton = document.getElementById("knowledge-bases-button");
-      selectedKnowledgeBaseId = document.getElementById("selectedKnowledgeBaseId");
+      const knowledgeBaseTable = document.getElementById('knowledgeBaseTable');
+      const exportKnowledgeBaseButton = document.getElementById('export-knowledge-base-button');
+
+      knowledgeBaseTable.addEventListener('change', function(event) {
+        const selectedRadio = knowledgeBaseTable.querySelector('input[name="knowledgeBaseRadio"]:checked');
+        if (selectedRadio) {
+          exportKnowledgeBaseButton.style.display = 'block';
+        } else {
+          exportKnowledgeBaseButton.style.display = 'none';
+        }
+      });
+      
+      exportKnowledgeBaseButton.addEventListener('click', exportKnowledgeBase);
 
     </script>
 
