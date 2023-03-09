@@ -67,6 +67,10 @@ function GetKnowledgeBase() {
       const radioInputs = document.querySelectorAll('input[name="knowledgeBase"]');
       radioInputs.forEach((radioInput) => {
         radioInput.addEventListener('change', () => {
+          const exportButton = document.querySelector('#export-knowledge-base-button');
+          if (!exportButton) {
+            return;
+          }
           exportButton.disabled = false;
         });
       });
