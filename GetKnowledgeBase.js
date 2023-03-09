@@ -1,4 +1,7 @@
 function GetKnowledgeBase() {
+  
+  const platformClient = require('platformClient');
+  
   const knowledgeBaseTable = document.getElementById('knowledgeBaseTable');
   knowledgeBaseTable.innerHTML = '';
 
