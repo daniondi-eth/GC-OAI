@@ -41,31 +41,28 @@ function GetKnowledgeBase() {
       });
 
       // Add button for KnowledgeExportJob
-      let exportButton = document.querySelector('#export-knowledge-base-button');
+      const exportButton = document.querySelector('#export-knowledge-base-button') || document.createElement('button');
+      exportButton.id = 'export-knowledge-base-button';
+      exportButton.innerText = 'Export Knowledge Base';
+      exportButton.disabled = true;
 
-      if (!exportButton) {
-        exportButton = document.createElement('button');
-        exportButton.id = 'export-knowledge-base-button';
-        exportButton.innerText = 'Export Knowledge Base';
-        exportButton.disabled = true;
-
-        exportButton.addEventListener('click', () => {
-          const selectedId = document.querySelector('input[name="knowledgeBase"]:checked');
-          if (selectedId) {
-            KnowledgeExportJob(event, selectedId.value);
-          }
-        });
-
-        const exportButtonRow = document.createElement('tr');
-        const exportButtonCell = document.createElement('td');
-        exportButtonCell.colSpan = 6;
-        exportButtonCell.style.textAlign = 'right';
-        exportButtonCell.appendChild(exportButton);
-        exportButtonRow.appendChild(exportButtonCell);
-        tableBody.appendChild(exportButtonRow);
-      } else {
-        exportButton.disabled = true;
+      function exportKnowledgeBase() {
+        const selectedId = document.querySelector('input[name="knowledgeBase"]:checked');
+        if (selectedId) {
+          KnowledgeExportJob(event, selectedId.value);
+        }
       }
+
+      exportButton.removeEventListener('click', exportKnowledgeBase);
+      exportButton.addEventListener('click', exportKnowledgeBase);
+
+      const exportButtonRow = document.createElement('tr');
+      const exportButtonCell = document.createElement('td');
+      exportButtonCell.colSpan = 6;
+      exportButtonCell.style.textAlign = 'right';
+      exportButtonCell.appendChild(exportButton);
+      exportButtonRow.appendChild(exportButtonCell);
+      tableBody.appendChild(exportButtonRow);
 
       // Enable export button when a knowledge base is selected
       const radioInputs = document.querySelectorAll('input[name="knowledgeBase"]');
@@ -80,6 +77,7 @@ function GetKnowledgeBase() {
       console.error(err);
     });
 }
+
 
 
 function KnowledgeExportJob(event, knowledgeBaseId) {
