@@ -55,7 +55,7 @@
         </table>
       </div>
       <div>
-       <button type="button" onclick="GetKnowledgeBase()">Get Knowledge Bases</button>
+       <button type="button" onclick="GetKnowledgeBases()">Get Knowledge Bases</button>
         <table id="knowledgeBaseTable">
           <thead>
             <tr>
@@ -114,7 +114,7 @@
 
       getKnowledgeBasesButton.addEventListener("click", function () {
         GetKnowledgeBases(exportKnowledgeBase.bind(null, selectedKnowledgeBaseId));
-        console.log("debug: GetKnowledgeBase executed");
+        console.log("debug: GetKnowledgeBases executed");
       });
 
     </script>
