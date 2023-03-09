@@ -1,19 +1,4 @@
 function exportKnowledgeBase() {
-  
-
-  const platformClient = require('platformClient');
-  const apiInstance = new platformClient.KnowledgeApi();
-  const opts = {
-    'knowledgeBaseId': knowledgeBaseId,
-    'formatId': 'json'
-  };
-  apiInstance.postKnowledgeKnowledgebaseLanguageBulkexport(opts)
-    .then((data) => {
-
-    
-    
-    
-function exportKnowledgeBase() {
   const platformClient = require('platformClient');
   const apiInstance = new platformClient.KnowledgeApi();
 
@@ -47,5 +32,17 @@ function exportKnowledgeBase() {
       console.error('Error al crear el job de exportación:', error);
     });
 }
-
+    
+function downloadJSON(url) {
+  return fetch(url)
+    .then(response => response.json())
+    .then(jsonData => {
+      console.log("JSON descargado:", jsonData);
+      return jsonData;
+    })
+    .catch(error => {
+      console.error("Error al descargar el JSON:", error);
+      throw error;
+    });
+}
 
