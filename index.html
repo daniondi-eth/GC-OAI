@@ -113,7 +113,7 @@
       selectedKnowledgeBaseId = document.getElementById("selectedKnowledgeBaseId");
 
       getKnowledgeBasesButton.addEventListener("click", function () {
-        GetKnowledgeBase(exportKnowledgeBase.bind(null, selectedKnowledgeBaseId));
+        GetKnowledgeBases(exportKnowledgeBase.bind(null, selectedKnowledgeBaseId));
         console.log("debug: GetKnowledgeBase executed");
       });
 
