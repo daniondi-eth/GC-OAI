@@ -49,7 +49,7 @@ function GetKnowledgeBase() {
       exportButton.addEventListener('click', () => {
         const selectedId = document.querySelector('input[name="knowledgeBase"]:checked');
         if (selectedId) {
-          KnowledgeExportJob(event, selectedId.value);
+          KnowledgeExportJob(event, parseInt(selectedId.value));
         }
       });
 
