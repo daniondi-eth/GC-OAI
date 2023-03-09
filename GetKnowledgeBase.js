@@ -1,4 +1,4 @@
-function GetKnowledgeBase() {
+function GetKnowledgeBase(exportCallback) {
   
   const platformClient = require('platformClient');
   let apiInstance = new platformClient.KnowledgeApi();
@@ -45,16 +45,13 @@ function GetKnowledgeBase() {
       exportButton.id = 'export-knowledge-base-button';
       exportButton.innerText = 'Export Knowledge Base';
       exportButton.disabled = true;
-
-      function exportKnowledgeBase() {
+    
+      exportButton.addEventListener('click', () => {
         const selectedId = document.querySelector('input[name="knowledgeBase"]:checked');
         if (selectedId) {
-          KnowledgeExportJob(event, selectedId.value);
+          exportCallback(selectedId.value);
         }
-      }
-
-      exportButton.removeEventListener('click', exportKnowledgeBase);
-      exportButton.addEventListener('click', exportKnowledgeBase);
+      });
 
       const exportButtonRow = document.createElement('tr');
       const exportButtonCell = document.createElement('td');
