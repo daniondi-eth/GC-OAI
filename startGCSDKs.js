@@ -20,9 +20,11 @@ function startGCSDKs(clientId) {
       setupGenesysClients(redirectUri, environment)
       .then(() => { 
         // Display values to the page
-        document.getElementById('span_environment').innerText = environment;
-        document.getElementById('span_language').innerText = language;
-        document.getElementById('span_name').innerText = userDetails.name;
+        document.addEventListener('DOMContentLoaded', () => {
+          document.getElementById('span_environment').innerText = environment;
+          document.getElementById('span_language').innerText = language;
+          document.getElementById('span_name').innerText = userDetails.name;
+        });
 
         console.log('Finished setup.');
       })
