@@ -26,8 +26,8 @@ function exportKnowledgeBase() {
             console.log("El status del job es: "+job.status);
             if (job.status.toLowerCase() === 'completed') {
               clearInterval(intervalId);
-              downloadJSON(job.downloadURL);
               console.log("La URL de descarga es: "+job.downloadURL);
+              downloadJSON(job.downloadURL);              
             }
           })
           .catch((error) => {
