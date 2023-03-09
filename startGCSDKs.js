@@ -9,7 +9,7 @@ function startGCSDKs(clientId) {
     let language = 'en-us';
     let redirectUri = 'https://daniondi-eth.github.io/GC-OAI/'; 
     let userDetails = null;   
-    environment = "mypurecloud.ie";//default value
+    let environment = "mypurecloud.ie";//default value
   
     // After page loads...
     window.addEventListener('load', (event) => {
