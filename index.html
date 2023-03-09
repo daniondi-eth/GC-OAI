@@ -73,7 +73,7 @@
       </div>
       <template id="api-component-template">
         <div>
-          <button @click.prevent="createExportJob">Export Knowledge Base</button>
+          <button @click.prevent="exportKnowledgeBase($event, kb.id)">Export Knowledge Base</button>
           <div v-if="response">Response: {{ response }}</div>
           <div v-if="error">Error: {{ error }}</div>
         </div>
@@ -111,7 +111,7 @@
       const selectedKnowledgeBaseId = document.getElementById("selectedKnowledgeBaseId");
 
       getKnowledgeBasesButton.addEventListener("click", function () {
-        GetKnowledgeBase(exportKnowledgeBase.bind(null, selectedKnowledgeBaseId));
+        GetKnowledgeBase(exportKnowledgeBase.bind(null, this.parentNode.parentNode.cells[0].textContent));
         console.log("debug: GetKnowledgeBase executed");
       });
 
