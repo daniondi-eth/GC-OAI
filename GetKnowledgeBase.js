@@ -6,8 +6,10 @@ function GetKnowledgeBase() {
   knowledgeBaseTable.innerHTML = '';
 
   // Llamada a la API "Get knowledge bases" usando el SDK de Genesys Cloud
-  const knowledgeApi = platformClient.createKnowledgeApi();
-  knowledgeApi.getKnowledgeKnowledgebases().then((knowledgeBases) => {
+  let apiInstance = new platformClient.KnowledgeApi();
+  let opts = {};
+  apiInstance.getKnowledgeKnowledgebases(opts)
+    .then((knowledgeBases) =>  {
     // Crea una fila en la tabla para cada knowledge base
     knowledgeBases.entities.forEach((kb) => {
       const row = knowledgeBaseTable.insertRow();
@@ -33,6 +35,6 @@ function GetKnowledgeBase() {
       articleCountCell.innerHTML = kb.articleCount;
     });
   }).catch((error) => {
-    console.error('Error al obtener los knowledge bases:', error);
+    console.error('Error al obtener las knowledge bases:', error);
   });
 }
