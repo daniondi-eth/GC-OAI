@@ -39,41 +39,39 @@ function GetKnowledgeBase() {
         tableBody.appendChild(row);
       });
 
-      // Add button for KnowledgeExportJob if it doesn't exist
-      const exportButton = document.querySelector('#export-knowledge-base-button');
+      // Add button for KnowledgeExportJob
+      let exportButton = document.querySelector('#export-knowledge-base-button');
+
       if (!exportButton) {
-        const newExportButton = document.createElement('button');
-        newExportButton.id = 'export-knowledge-base-button';
-        newExportButton.innerText = 'Export Knowledge Base';
-        newExportButton.disabled = true;
-      
-        newExportButton.addEventListener('click', () => {
-          const selectedId = document.querySelector('input[name="knowledgeBase"]:checked');
-          if (selectedId) {
-            KnowledgeExportJob(event, selectedId.value);
-          }
-        });
-  
+        exportButton = document.createElement('button');
+        exportButton.id = 'export-knowledge-base-button';
+        exportButton.innerText = 'Export Knowledge Base';
+        exportButton.disabled = true;
+
         const exportButtonRow = document.createElement('tr');
         const exportButtonCell = document.createElement('td');
         exportButtonCell.colSpan = 6;
         exportButtonCell.style.textAlign = 'right';
-        exportButtonCell.appendChild(newExportButton);
+        exportButtonCell.appendChild(exportButton);
         exportButtonRow.appendChild(exportButtonCell);
         tableBody.appendChild(exportButtonRow);
       }
+
+      exportButton.addEventListener('click', () => {
+        const selectedId = document.querySelector('input[name="knowledgeBase"]:checked');
+        if (selectedId) {
+          KnowledgeExportJob(event, selectedId.value);
+        }
+      });
 
       // Enable export button when a knowledge base is selected
       const radioInputs = document.querySelectorAll('input[name="knowledgeBase"]');
       radioInputs.forEach((radioInput) => {
         radioInput.addEventListener('change', () => {
-          const exportButton = document.querySelector('#export-knowledge-base-button');
-          if (!exportButton) {
-            return;
-          }
           exportButton.disabled = false;
         });
       });
+
     })
     .catch((err) => {
       console.log("There was a failure calling getKnowledgeKnowledgebases");
