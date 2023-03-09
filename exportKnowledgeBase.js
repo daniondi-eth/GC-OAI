@@ -12,7 +12,6 @@ function exportKnowledgeBase() {
         'versionFilter': 'Latest'
     }, 
     'fileType': 'json'
-  }
   };
   apiInstance.postKnowledgeKnowledgebaseExportJobs(knowledgeBaseId, opts)
     .then((response) => {
