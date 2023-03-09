@@ -14,7 +14,7 @@ function GetKnowledgeBase(callback) {
             row.insertCell(2).appendChild(document.createTextNode(kb.description));
             row.insertCell(3).appendChild(document.createTextNode(kb.coreLanguage));
             row.insertCell(4).appendChild(document.createTextNode(kb.articleCount));
-            row.insertCell(5).innerHTML = '<button onclick="exportKnowledgeBase(\'' + kb.id + '\')">Export Knowledge Base</button>';
+            row.insertCell(5).innerHTML = '<button onclick="exportKnowledgeBase(this.parentNode.parentNode.cells[0].textContent)">Export Knowledge Base</button>';
 
         });
         if (callback) {
