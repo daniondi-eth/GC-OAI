@@ -41,7 +41,8 @@ function GetKnowledgeBase() {
       });
 
       // Add button for KnowledgeExportJob
-      const exportButton = document.createElement('button');
+      const exportButton = document.querySelector('#export-knowledge-base-button') || document.createElement('button');
+      exportButton.id = 'export-knowledge-base-button';
       exportButton.innerText = 'Export Knowledge Base';
       exportButton.disabled = true;
     
