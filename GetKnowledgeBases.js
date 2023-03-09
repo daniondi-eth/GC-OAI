@@ -1,4 +1,4 @@
-function GetKnowledgeBase() {
+function GetKnowledgeBases() {
   
   const platformClient = require('platformClient');
   
