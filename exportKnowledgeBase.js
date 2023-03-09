@@ -41,15 +41,18 @@ function exportKnowledgeBase() {
 }
     
 function downloadJSON(url) {
-  return fetch(url)
-    .then(response => response.json())
-    .then(jsonData => {
-      console.log("JSON descargado:", jsonData);
-      return jsonData;
+  return fetch(url, {
+    mode: 'no-cors'
+  })
+    .then(response => response.text())
+    .then(textData => {
+      console.log("JSON descargado:", textData);
+      return JSON.parse(textData);
     })
     .catch(error => {
       console.error("Error al descargar el JSON:", error);
       throw error;
     });
 }
+
 
