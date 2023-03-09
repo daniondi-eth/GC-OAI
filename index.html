@@ -80,7 +80,6 @@
     </form>
 
     <script>
-      
       console.log("start");
       const OAIApiKey = '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';
       const gcClientId = 'ad6a9e4d-9694-4775-9e3f-6e590076508c';
@@ -92,8 +91,8 @@
         handleFileSelect(event);
         console.log("debug: handleFileSelect executed");
       });
-      
-    
+
+
       const fineTuneButton = document.getElementById("fine-tune-button");
       fineTuneButton.addEventListener("click", function () {
         fineTune();
@@ -106,15 +105,17 @@
         listFineTunes();
         console.log("debug: listFineTunes executed");
       });
-      
+
       const getKnowledgeBasesButton = document.getElementById("knowledge-bases-button");
       const selectedKnowledgeBaseId = document.getElementById("selectedKnowledgeBaseId");
+
       getKnowledgeBasesButton.addEventListener("click", function () {
         GetKnowledgeBase(KnowledgeExportJob.bind(null, selectedKnowledgeBaseId));
         console.log("debug: GetKnowledgeBase executed");
       });
 
     </script>
+
     
   </body>
 </html>
