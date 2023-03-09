@@ -1,28 +1,35 @@
-function GetKnowledgeBase(callback) {
-  const platformClient = require('platformClient');
-  let apiInstance = new platformClient.KnowledgeApi();
-  let opts = {};
-  // Get knowledge bases
-  apiInstance.getKnowledgeKnowledgebases(opts)
-    .then((knowledgeBases) => {
-        console.log(`Found ${knowledgeBases.entities.length} knowledge bases.`);
-        const knowledgeBaseTable = document.getElementById('knowledge-bases-table').getElementsByTagName('tbody')[0];
-        knowledgeBases.entities.forEach((kb) => {
-            const row = knowledgeBaseTable.insertRow();
-            row.insertCell(0).appendChild(document.createTextNode(kb.id));
-            row.insertCell(1).appendChild(document.createTextNode(kb.name));
-            row.insertCell(2).appendChild(document.createTextNode(kb.description));
-            row.insertCell(3).appendChild(document.createTextNode(kb.coreLanguage));
-            row.insertCell(4).appendChild(document.createTextNode(kb.articleCount));
-            row.insertCell(5).innerHTML = '<button onclick="exportKnowledgeBase(this.parentNode.parentNode.cells[0].textContent)">Export Knowledge Base</button>';
+function GetKnowledgeBase() {
+  const knowledgeBaseTable = document.getElementById('knowledgeBaseTable');
+  knowledgeBaseTable.innerHTML = '';
 
-        });
-        if (callback) {
-            callback();
-        }
-    })
-    .catch((err) => {
-        console.log('There was a failure calling getKnowledgeKnowledgebases');
-        console.error(err);
+  // Llamada a la API "Get knowledge bases" usando el SDK de Genesys Cloud
+  const knowledgeApi = platformClient.createKnowledgeApi();
+  knowledgeApi.getKnowledgeKnowledgebases().then((knowledgeBases) => {
+    // Crea una fila en la tabla para cada knowledge base
+    knowledgeBases.entities.forEach((kb) => {
+      const row = knowledgeBaseTable.insertRow();
+      const radioCell = row.insertCell();
+      const idCell = row.insertCell();
+      const nameCell = row.insertCell();
+      const descriptionCell = row.insertCell();
+      const coreLanguageCell = row.insertCell();
+      const articleCountCell = row.insertCell();
+
+      // Crea un radio button para seleccionar la fila deseada
+      const radioBtn = document.createElement('input');
+      radioBtn.type = 'radio';
+      radioBtn.name = 'knowledgeBaseRadio';
+      radioBtn.value = kb.id;
+      radioCell.appendChild(radioBtn);
+
+      // Agrega los datos de cada knowledge base a la fila correspondiente en la tabla
+      idCell.innerHTML = kb.id;
+      nameCell.innerHTML = kb.name;
+      descriptionCell.innerHTML = kb.description;
+      coreLanguageCell.innerHTML = kb.coreLanguage;
+      articleCountCell.innerHTML = kb.articleCount;
     });
+  }).catch((error) => {
+    console.error('Error al obtener los knowledge bases:', error);
+  });
 }
