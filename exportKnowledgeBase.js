@@ -41,18 +41,34 @@ function exportKnowledgeBase() {
 }
     
 function downloadJSON(url) {
-  return fetch(url, {
-    mode: 'no-cors'
-  })
-    .then(response => response.text())
-    .then(textData => {
-      console.log("JSON descargado:", textData);
-      return JSON.parse(textData);
+  return fetch(url, { mode: 'no-cors' })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Error de respuesta al exportar el JSON');
+      }
+      return response.blob();
+    })
+    .then(blob => {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.addEventListener('loadend', () => {
+          try {
+            const jsonData = JSON.parse(reader.result);
+            console.log("JSON descargado:", jsonData);
+            resolve(jsonData);
+          } catch (error) {
+            console.error("Error al analizar el JSON:", error);
+            reject(error);
+          }
+        });
+        reader.readAsText(blob);
+      });
     })
     .catch(error => {
       console.error("Error al descargar el JSON:", error);
       throw error;
     });
 }
+
 
 
