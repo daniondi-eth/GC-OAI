@@ -1,4 +1,5 @@
 function GetKnowledgeBase() {
+  
   const platformClient = require('platformClient');
   let apiInstance = new platformClient.KnowledgeApi();
   let opts = {};
@@ -48,6 +49,13 @@ function GetKnowledgeBase() {
         exportButton.innerText = 'Export Knowledge Base';
         exportButton.disabled = true;
 
+        exportButton.addEventListener('click', () => {
+          const selectedId = document.querySelector('input[name="knowledgeBase"]:checked');
+          if (selectedId) {
+            KnowledgeExportJob(event, selectedId.value);
+          }
+        });
+
         const exportButtonRow = document.createElement('tr');
         const exportButtonCell = document.createElement('td');
         exportButtonCell.colSpan = 6;
@@ -55,14 +63,9 @@ function GetKnowledgeBase() {
         exportButtonCell.appendChild(exportButton);
         exportButtonRow.appendChild(exportButtonCell);
         tableBody.appendChild(exportButtonRow);
+      } else {
+        exportButton.disabled = true;
       }
-
-      exportButton.addEventListener('click', () => {
-        const selectedId = document.querySelector('input[name="knowledgeBase"]:checked');
-        if (selectedId) {
-          KnowledgeExportJob(event, selectedId.value);
-        }
-      });
 
       // Enable export button when a knowledge base is selected
       const radioInputs = document.querySelectorAll('input[name="knowledgeBase"]');
@@ -71,7 +74,6 @@ function GetKnowledgeBase() {
           exportButton.disabled = false;
         });
       });
-
     })
     .catch((err) => {
       console.log("There was a failure calling getKnowledgeKnowledgebases");
