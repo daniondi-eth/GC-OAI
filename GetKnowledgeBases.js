@@ -3,6 +3,10 @@ function GetKnowledgeBases() {
   const platformClient = require('platformClient');
   
   const knowledgeBaseTable = document.getElementById('knowledgeBaseTable');
+  const tbody = knowledgeBaseTable.querySelector('tbody');
+  tbody.innerHTML = '';  
+  
+  const knowledgeBaseTable = document.getElementById('knowledgeBaseTable');
   knowledgeBaseTable.innerHTML = '';
 
   // Llamada a la API "Get knowledge bases" usando el SDK de Genesys Cloud
@@ -33,6 +37,16 @@ function GetKnowledgeBases() {
       descriptionCell.innerHTML = kb.description;
       coreLanguageCell.innerHTML = kb.coreLanguage;
       articleCountCell.innerHTML = kb.articleCount;
+      
+      // Agrega las celdas a la fila y la fila a la tabla
+      row.appendChild(radioCell);
+      row.appendChild(idCell);
+      row.appendChild(nameCell);
+      row.appendChild(descriptionCell);
+      row.appendChild(coreLanguageCell);
+      row.appendChild(articleCountCell);
+      tbody.appendChild(row);  
+            
     });
   }).catch((error) => {
     console.error('Error al obtener las knowledge bases:', error);
