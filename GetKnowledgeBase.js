@@ -1,81 +1,42 @@
-function GetKnowledgeBase(exportCallback) {
-  
+function GetKnowledgeBase(callback) {
+  console.log('Getting knowledge bases...');
+
   const platformClient = require('platformClient');
-  let apiInstance = new platformClient.KnowledgeApi();
-  let opts = {};
+  const client = platformClient.ApiClient.instance;
 
-  // Get knowledge bases
-  apiInstance.getKnowledgeKnowledgebases(opts)
-    .then((data) => {
-      console.log(`getKnowledgeKnowledgebases success! data: ${JSON.stringify(data, null, 2)}`);
-
-      const tableBody = document.querySelector('#knowledge-bases-table tbody');
-      data.entities.forEach((knowledgeBase) => {
-        const row = document.createElement('tr');
-        const idCell = document.createElement('td');
-        const nameCell = document.createElement('td');
-        const descriptionCell = document.createElement('td');
-        const coreLanguageCell = document.createElement('td');
-        const articleCountCell = document.createElement('td');
-        const radioCell = document.createElement('td');
-
-        idCell.innerText = knowledgeBase.id;
-        nameCell.innerText = knowledgeBase.name;
-        descriptionCell.innerText = knowledgeBase.description;
-        coreLanguageCell.innerText = knowledgeBase.coreLanguage;
-        articleCountCell.innerText = knowledgeBase.articleCount;
-
-        const radioInput = document.createElement('input');
-        radioInput.type = 'radio';
-        radioInput.name = 'knowledgeBase';
-        radioInput.value = knowledgeBase.id;
-        radioCell.appendChild(radioInput);
-
-        row.appendChild(idCell);
-        row.appendChild(nameCell);
-        row.appendChild(descriptionCell);
-        row.appendChild(coreLanguageCell);
-        row.appendChild(articleCountCell);
-        row.appendChild(radioCell);
-        tableBody.appendChild(row);
-      });
-
-      // Add button for KnowledgeExportJob
-      const exportButton = document.querySelector('#export-knowledge-base-button') || document.createElement('button');
-      exportButton.id = 'export-knowledge-base-button';
-      exportButton.innerText = 'Export Knowledge Base';
-      exportButton.disabled = true;
-    
-      exportButton.addEventListener('click', () => {
-        const selectedId = document.querySelector('input[name="knowledgeBase"]:checked');
-        if (selectedId) {
-          exportCallback(selectedId.value);
-        }
-      });
-
-      const exportButtonRow = document.createElement('tr');
-      const exportButtonCell = document.createElement('td');
-      exportButtonCell.colSpan = 6;
-      exportButtonCell.style.textAlign = 'right';
-      exportButtonCell.appendChild(exportButton);
-      exportButtonRow.appendChild(exportButtonCell);
-      tableBody.appendChild(exportButtonRow);
-
-      // Enable export button when a knowledge base is selected
-      const radioInputs = document.querySelectorAll('input[name="knowledgeBase"]');
-      radioInputs.forEach((radioInput) => {
-        radioInput.addEventListener('change', () => {
-          exportButton.disabled = false;
+  // Configure authorization
+  const clientId = 'ad6a9e4d-9694-4775-9e3f-6e590076508c';
+  client.setEnvironment('mypurecloud.com');
+  client.loginImplicitGrant(clientId, 'https://localhost', { state: 'testState' })
+    .then(() => {
+      console.log('Logged in');
+      const knowledgeApi = new platformClient.KnowledgeApi();
+      knowledgeApi.getKnowledgeKnowledgebases()
+        .then((knowledgeBases) => {
+          console.log(`Found ${knowledgeBases.entities.length} knowledge bases.`);
+          const knowledgeBaseTable = document.getElementById('knowledge-bases-table').getElementsByTagName('tbody')[0];
+          knowledgeBases.entities.forEach((kb) => {
+            const row = knowledgeBaseTable.insertRow();
+            row.insertCell(0).appendChild(document.createTextNode(kb.id));
+            row.insertCell(1).appendChild(document.createTextNode(kb.name));
+            row.insertCell(2).appendChild(document.createTextNode(kb.description));
+            row.insertCell(3).appendChild(document.createTextNode(kb.coreLanguage));
+            row.insertCell(4).appendChild(document.createTextNode(kb.articleCount));
+            row.insertCell(5).innerHTML = '<button onclick="exportKnowledgeBase(\'' + kb.id + '\')">Export</button>';
+          });
+          if (callback) {
+            callback();
+          }
+        })
+        .catch((err) => {
+          console.log('There was a failure calling getKnowledgeKnowledgebases');
+          console.error(err);
         });
-      });
     })
     .catch((err) => {
-      console.log("There was a failure calling getKnowledgeKnowledgebases");
-      console.error(err);
+      console.log('There was an error logging in', err);
     });
 }
-
-
 
 function KnowledgeExportJob(event, knowledgeBaseId) {
   event.preventDefault(); // evita que la página se recargue
