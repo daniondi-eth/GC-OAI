@@ -6,9 +6,6 @@ function GetKnowledgeBases() {
   const tbody = knowledgeBaseTable.querySelector('tbody');
   tbody.innerHTML = '';  
   
-  const knowledgeBaseTable = document.getElementById('knowledgeBaseTable');
-  knowledgeBaseTable.innerHTML = '';
-
   // Llamada a la API "Get knowledge bases" usando el SDK de Genesys Cloud
   let apiInstance = new platformClient.KnowledgeApi();
   let opts = {};
