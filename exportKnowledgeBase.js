@@ -1,4 +1,6 @@
-function exportKnowledgeBase(knowledgeBaseId) {
+function exportKnowledgeBase(event,knowledgeBaseId) {
+  
+  event.preventDefault();//para evitar que se recargue la página al seleccionar la Knowledge Base que queremos exportar)
   const platformClient = require('platformClient');
   const apiInstance = new platformClient.KnowledgeApi();
   const opts = {
