@@ -41,7 +41,11 @@ function exportKnowledgeBase() {
 }
 
 function downloadJSON(url) {
-  return fetch(url)
+  return fetch(url, {
+  headers: {
+    'Origin': 'https://daniondi-eth.github.io/GC-OAI/' // para evitar error CORS
+  }
+  })
     .then(response => response.json())
     .then(jsonData => {
       console.log("JSON descargado:", jsonData);
