@@ -35,7 +35,7 @@ function exportKnowledgeBase() {
             documents: documents
           });
           console.log("JSON descargado:", json);
-          return json;
+          handleFileSelect(json);
         })
         .catch((error) => {
           console.error('Error al obtener las variaciones de documentos:', error);
