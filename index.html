@@ -9,14 +9,12 @@
     <script src="./getKnowledgeBases.js"></script>
     <script src="./startGCSDKs.js"></script>
     <script src="./exportKnowledgeBase.js"></script>
-    <script src="./downloadJSON.js"></script>    
-    <!--      
+    <script src="./downloadJSON.js"></script>      
     <script src="./fineTune.js"></script>
     <script src="./listFineTunes.js"></script>
     <script src="./extract_text.js"></script>
     <script src="./handleFileSelect.js"></script>
     <script src="./uploadJSONL.js"></script>
-    -->
     <link rel="stylesheet" href="app.css" /> 
     
   </head>
@@ -93,7 +91,7 @@
 
       const fineTuneButton = document.getElementById("fine-tune-button");
       fineTuneButton.addEventListener("click", function () {
-        fineTune();
+        fineTune(OAIApiKey);
         console.log("debug: fineTune executed");
       });
 
