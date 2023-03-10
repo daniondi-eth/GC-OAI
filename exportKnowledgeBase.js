@@ -30,7 +30,16 @@ function exportKnowledgeBase() {
             if (job.status.toLowerCase() === 'completed') {
               clearInterval(intervalId);
               console.log("La URL de descarga es: "+job.downloadURL);
-              downloadJSON(job.downloadURL);              
+              fetch(job.downloadURL)
+                .then(response => response.json())
+                .then(jsonData => {
+                  console.log("JSON descargado:", jsonData);
+                  return jsonData;
+                })
+                .catch(error => {
+                  console.error("Error al descargar el JSON:", error);
+                  throw error;
+                });              
             }
           })
           .catch((error) => {
@@ -42,25 +51,3 @@ function exportKnowledgeBase() {
       console.error('Error al crear el job de exportación:', error);
     });
 }
-
-function downloadJSON(url) {
-  return new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState === XMLHttpRequest.DONE) {
-        if (xhr.status === 200) {
-          const jsonData = JSON.parse(xhr.responseText);
-          console.log("JSON descargado:", jsonData);
-          resolve(jsonData);
-        } else {
-          console.error("Error al descargar el JSON:", xhr.statusText);
-          reject(xhr.statusText);
-        }
-      }
-    };
-    xhr.open("GET", url, true);
-    xhr.send();
-  });
-}
-
-
