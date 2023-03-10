@@ -30,11 +30,13 @@ function exportKnowledgeBase() {
             if (job.status.toLowerCase() === 'completed') {
               clearInterval(intervalId);
               console.log("La URL de descarga es: "+job.downloadURL);
-              fetch(job.downloadURL)
+              fetch(job.downloadURL, {
+                headers: headers // Agregar headers a la solicitud de descarga
+              })
                 .then(response => response.json())
                 .then(jsonData => {
                   console.log("JSON descargado:", jsonData);
-                  return jsonData;
+                  // Aquí puedes hacer algo con el JSON descargado
                 })
                 .catch(error => {
                   console.error("Error al descargar el JSON:", error);
