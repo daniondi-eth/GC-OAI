@@ -81,13 +81,7 @@
       let selectedKnowledgeBaseId;
       startGCSDKs(gcClientId);
       console.log("debug: startGCSDKs executed");
-
-      const form = document.querySelector('form');
-      form.addEventListener("change", function (event) {
-        handleFileSelect(event);
-        console.log("debug: handleFileSelect executed");
-      });
-
+      
 
       const fineTuneButton = document.getElementById("fine-tune-button");
       fineTuneButton.addEventListener("click", function () {
