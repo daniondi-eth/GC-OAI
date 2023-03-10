@@ -3,7 +3,9 @@ function handleFileSelect(input) {
         if (!input || !input.files || input.files.length === 0) {
           return;
         }
+        console.log ("Comienza el formateo a JSONL mediante handleFileSelect");
         const file = input.files[0];
+        console.log ("file: "+file);
         const reader = new FileReader();
         reader.onload = function () {
           const json = JSON.parse(reader.result);
@@ -17,6 +19,6 @@ function handleFileSelect(input) {
           const preview = document.getElementById("jsonl-preview");
           preview.value = jsonlString.split("\n").slice(0, 50).join("\n");
         };
-        const JSONL = reader.readAsText(file);
-        console.log ("El JSONL generado tras handleFileSelect es: " +JSONL);
+        reader.readAsText(file);
+        console.log ("El JSONL generado tras handleFileSelect es: " +jsonlString.split("\n").slice(0, 50).join("\n"));
 }
