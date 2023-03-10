@@ -1,5 +1,5 @@
-function handleFileSelect() {
-        const input = event.target;
+function handleFileSelect(input) {
+
         if (!input || !input.files || input.files.length === 0) {
           return;
         }
