@@ -1,4 +1,4 @@
-function handleFileSelect(event) {
+function handleFileSelect() {
         const input = event.target;
         if (!input || !input.files || input.files.length === 0) {
           return;
@@ -10,7 +10,7 @@ function handleFileSelect(event) {
           const documents = json.documents;
           const jsonl = documents.map((document) => {
             const title = document.published.title;
-            const text = extract_text(document.published.variations);
+            const text = extractText(document.published.variations);
             return { prompt: title, completion: text };
           });
           const jsonlString = jsonl.map((line) => JSON.stringify(line)).join("\n");
