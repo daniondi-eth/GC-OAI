@@ -17,5 +17,6 @@ function handleFileSelect(input) {
           const preview = document.getElementById("jsonl-preview");
           preview.value = jsonlString.split("\n").slice(0, 50).join("\n");
         };
-        reader.readAsText(file);
+        const formattedJSON = reader.readAsText(file);
+        console.log ("El json generado tras handleFileSelect es: " +formattedJSON);
 }
