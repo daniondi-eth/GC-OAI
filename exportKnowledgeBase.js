@@ -40,7 +40,7 @@ function exportKnowledgeBase() {
         });
     })
     .catch((error) => {
-      console.error('Error al obtener los documentos:', error);
+      console.error('Fallo al obtener los documentos:', error);
       throw error;
     });
 }
