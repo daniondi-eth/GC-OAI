@@ -13,14 +13,17 @@ function exportKnowledgeBase() {
     }, 
     'fileType': 'json'
   };
-  apiInstance.postKnowledgeKnowledgebaseExportJobs(knowledgeBaseId, opts)
+  const headers = {
+    'Origin': 'https://daniondi-eth.github.io/GC-OAI/' // para evitar error CORS
+  };
+  apiInstance.postKnowledgeKnowledgebaseExportJobs(knowledgeBaseId, opts, headers)
     .then((response) => {
       console.log(response);
       const jobId = response.id;
 
       // Esperar a que el job termine
       const intervalId = setInterval(() => {
-        apiInstance.getKnowledgeKnowledgebaseExportJob(knowledgeBaseId, jobId)
+        apiInstance.getKnowledgeKnowledgebaseExportJob(knowledgeBaseId, jobId, headers)
           .then((job) => {
             console.log(job);
             console.log("El status del job es: "+job.status);
@@ -41,11 +44,7 @@ function exportKnowledgeBase() {
 }
 
 function downloadJSON(url) {
-  return fetch(url, {
-  headers: {
-    'Origin': 'https://daniondi-eth.github.io/GC-OAI/' // para evitar error CORS
-  }
-  })
+  return fetch(url)
     .then(response => response.json())
     .then(jsonData => {
       console.log("JSON descargado:", jsonData);
