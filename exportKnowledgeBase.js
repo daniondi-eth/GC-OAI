@@ -10,7 +10,6 @@ function exportKnowledgeBase() {
   // Obtener documentos de la knowledge base
   apiInstance.getKnowledgeKnowledgebaseDocuments(knowledgeBaseId, opts)
     .then((response) => {
-      console.log(`getKnowledgeKnowledgebaseDocuments success! data: ${JSON.stringify(response, null, 2)}`);
       const entities = Array.isArray(response.entities) ? response.entities : [response.entities]; // Aseguramos que entities sea un array
       const documentIds = entities.map(entity => entity.id);
       console.log("IDs de documentos:", documentIds);
